@@ -1,0 +1,47 @@
+* {
+	box-sizing: border-box
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-image: url(img/fondo.jpg);
+	background-size: cover
+}
+
+div.contenedor {
+	margin:0 auto;
+	width: 80vw;
+	height: 100vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center
+}
+
+a.tecla {
+	width: 10%;
+	line-height: 150px;
+	display: block;
+	background-color: black;
+	border: 1px solid yellow;
+	font-size:30px;
+	font-family: Roboto;
+	transition: box-shadow 70ms
+}
+
+a.tecla:link,
+a.tecla:active,
+a.tecla:visited,
+a.tecla:hover {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: white;
+	text-align: center;
+}
+
+a.tecla.presionada {
+	box-shadow: 0 0 15px yellow
+}
