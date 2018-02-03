@@ -3,7 +3,6 @@ const personas = ["Carlos", "María", "Luis", "Jana", "Manuel"]
 const extraidos = personas.slice(1, 3)
 console.log(extraidos)
 console.log(personas)
-
 const parteFinal = personas.slice(2)
 console.log(parteFinal)
 
