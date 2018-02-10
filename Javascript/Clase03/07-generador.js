@@ -10,6 +10,7 @@ const gen = generador()
 gen.next() // Paso 1
 gen.next() // Paso 2
 gen.next() // Paso 3
+
 //console.log(gen)
 
 
