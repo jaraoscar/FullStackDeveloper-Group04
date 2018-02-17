@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <app-formulario (onNuevoServidor)="agregar($event)"></app-formulario>
+    </div>
+
+    <div class="col-4">
+      <app-listado [servidores]="servidores" (onSeleccion2)="seleccionar($event)"></app-listado>
+    </div>
+
+    <div class="col-4">
+      <app-detalle [server]="seleccionado" *ngIf="seleccionado"></app-detalle>
+    </div>
+
+
+  </div>
+</div>
