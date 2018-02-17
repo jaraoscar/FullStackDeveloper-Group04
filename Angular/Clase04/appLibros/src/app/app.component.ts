@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Libro } from './libro';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  //libros: Array<{}>
+  //libros: Array<{titulo: string, autor: string, descripcion: string}>
+  libros: Array<Libro> = []
+
+  agregarLibro(dato: Libro){
+    this.libros.push(dato)
+  }
+
 }

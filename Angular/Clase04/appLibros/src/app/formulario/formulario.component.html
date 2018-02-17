@@ -1,0 +1,9 @@
+<form #f="ngForm" (ngSubmit)="agregar()">
+  <input type="text" name="titulo" [(ngModel)]="libro.titulo" placeholder="Título" required>
+  <br>
+  <input type="text" name="autor" [(ngModel)]="libro.autor" placeholder="Título" required>
+  <br>
+  <textarea name="descripcion" [(ngModel)]="libro.descripcion" id="" cols="30" rows="10" placeholder="Descripción" required></textarea>
+  <br>
+  <button [disabled]="!f.valid">Grabar</button>
+</form>
