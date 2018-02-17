@@ -1,0 +1,11 @@
+<form #f="ngForm">
+  <input type="text" placeholder="Nombre del servidor" name="nombre" required [(ngModel)]="nombre">
+  <br>
+  <input type="text" placeholder="Proveedor" name="proveedor" required [(ngModel)]="proveedor" >
+  <br>
+  <textarea name="descripcion" id="" cols="30" rows="10"  required [(ngModel)]="descripcion"></textarea>
+  <br>
+  <input type="text" name="ip" placeholder="IP" required [(ngModel)]="ip">
+  <br>
+  <button type="submit" (click)="agregarServidor()" [disabled]="!f.valid">Agregar</button>
+</form>
