@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   servidores: Array<{}> = []
 
-  agregar(){
+  agregar(dato){
+    this.servidores.push(dato)
+    console.log(this.servidores)
     console.log("Servidor agregado")
   }
 }

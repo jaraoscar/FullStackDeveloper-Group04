@@ -1,2 +1,2 @@
-<app-formulario (onNuevoServidor)="agregar()"></app-formulario>
-<app-listado></app-listado>
+<app-formulario (onNuevoServidor)="agregar($event)"></app-formulario>
+<app-listado [servidores]="servidores"></app-listado>

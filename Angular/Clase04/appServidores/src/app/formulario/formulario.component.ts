@@ -30,7 +30,7 @@ export class FormularioComponent implements OnInit {
     this.proveedor = ""
     this.ip = ""
 
-    console.log(this.servidores)
+    //console.log(this.servidores)
 
     console.log("servidor agregado")
   }
