@@ -5,4 +5,5 @@
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required [(ngModel)]="usuario.contrasena" name="contrasena">
   <button class="btn btn-lg btn-primary btn-block" [disabled]="!f.valid">Ingresar</button>
+  <span class="text-error">{{mensajeError}}</span>
 </form>

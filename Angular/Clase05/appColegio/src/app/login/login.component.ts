@@ -3,6 +3,7 @@ import { AuthService } from 'app/auth.service';
 import { IUsuario } from 'app/i-usuario';
 
 import { NgForm } from '@angular/forms'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,21 @@ import { NgForm } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   usuario: IUsuario = {correo: "", contrasena: ""}
+  mensajeError: string
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private ruteador: Router) { }
 
   ngOnInit() {
   }
 
   onLogin() {
-    this.auth.login(this.usuario)
+    this.mensajeError= this.auth.login(this.usuario)
+
+    if(this.mensajeError == "") {
+      this.ruteador.navigate(["home"])
+    } 
+
+    // if(estado) document.location.href="/home"
   }
 
 }

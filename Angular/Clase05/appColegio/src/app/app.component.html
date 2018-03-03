@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4" *ngIf="usuarioLogueado">
     <a class="navbar-brand" href="#">Sistema</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -15,10 +15,10 @@
             <li class="nav-item">
                 <a class="nav-link" routerLinkActive="active" routerLink="/cursos">Cursos</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Login</a>
-            </li>
         </ul>
+        <form>
+            <button class="btn btn-danger" type="button" (click)="logout()">Logout</button>
+        </form>
     </div>
 </nav>
 

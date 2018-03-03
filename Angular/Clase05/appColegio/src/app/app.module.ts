@@ -11,12 +11,14 @@ import { ListadoCursosComponent } from './listado-cursos/listado-cursos.componen
 import { AuthService } from 'app/auth.service';
 import { AlumnoService } from 'app/alumno.service';
 import { CursoService } from 'app/curso.service';
+import { AuthGuard } from 'app/auth.guard';
+import { AuthorizationGuard } from 'app/authorization.guard';
 
 const rutas: Routes = [
   {path: "", component: LoginComponent, pathMatch: "full"},
-  {path: "home", component: HomeComponent},
-  {path: "alumnos", component: ListadoAlumnosComponent},
-  {path: "cursos", component: ListadoCursosComponent}
+  {path: "home", component: HomeComponent, canActivate:[AuthGuard]},
+  {path: "alumnos", component: ListadoAlumnosComponent, canActivate:[AuthGuard]},
+  {path: "cursos", component: ListadoCursosComponent, canActivate:[AuthGuard, AuthorizationGuard]}
 ]
 
 @NgModule({
@@ -32,7 +34,7 @@ const rutas: Routes = [
     RouterModule.forRoot(rutas),
     FormsModule
   ],
-  providers: [AuthService, AlumnoService, CursoService],
+  providers: [AuthService, AlumnoService, CursoService, AuthGuard, AuthorizationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
