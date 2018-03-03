@@ -13,12 +13,24 @@ import { AlumnoService } from 'app/alumno.service';
 import { CursoService } from 'app/curso.service';
 import { AuthGuard } from 'app/auth.guard';
 import { AuthorizationGuard } from 'app/authorization.guard';
+import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
+import { CursoNuevoComponent } from './curso-nuevo/curso-nuevo.component';
+import { CursoEdicionComponent } from './curso-edicion/curso-edicion.component';
 
 const rutas: Routes = [
   {path: "", component: LoginComponent, pathMatch: "full"},
   {path: "home", component: HomeComponent, canActivate:[AuthGuard]},
   {path: "alumnos", component: ListadoAlumnosComponent, canActivate:[AuthGuard]},
-  {path: "cursos", component: ListadoCursosComponent, canActivate:[AuthGuard, AuthorizationGuard]}
+  {path: "cursos", canActivateChild:[AuthGuard], children: [
+    {path: "", component: ListadoCursosComponent},
+    {path: "edicion/:id", component: CursoEdicionComponent},
+    {path: "nuevo", component: CursoNuevoComponent, canActivate:[AuthorizationGuard]}
+  ]},
+  /*{path: "cursos", component: ListadoCursosComponent, canActivate:[AuthGuard, AuthorizationGuard]},
+  {path: "cursos/nuevo", component: CursoNuevoComponent},
+  {path: "cursos/edicion", component: CursoEdicionComponent},*/
+  // {path: "**", redirectTo: ""}
+  {path: "**", component: NoEncontradoComponent}
 ]
 
 @NgModule({
@@ -27,7 +39,10 @@ const rutas: Routes = [
     LoginComponent,
     HomeComponent,
     ListadoAlumnosComponent,
-    ListadoCursosComponent
+    ListadoCursosComponent,
+    NoEncontradoComponent,
+    CursoNuevoComponent,
+    CursoEdicionComponent
   ],
   imports: [
     BrowserModule,
