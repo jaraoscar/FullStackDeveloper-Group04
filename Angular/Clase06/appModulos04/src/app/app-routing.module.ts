@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { LoginComponent } from "app/nucleo/login/login.component";
 import { HomeComponent } from "app/nucleo/home/home.component";
-import { PreloadAllModules } from "@angular/router";
 
 
 const rutas: Routes = [
@@ -17,7 +16,7 @@ const rutas: Routes = [
  declarations: [
  ],
  imports: [
-     RouterModule.forRoot(rutas, {preloadingStrategy: PreloadAllModules})
+     RouterModule.forRoot(rutas)
  ],
  exports: [
      RouterModule
