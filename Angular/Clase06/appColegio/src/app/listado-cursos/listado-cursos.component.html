@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <a [routerLink]="['/cursos', 'nuevo']" class="btn btn-success">Formulario para insertar</a>
+      <!--<a routerLink="/cursos/nuevo']">Formulario para insertar</a>-->
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Curso</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curso of listado">
+            <td>
+              {{curso.idCurso}}
+            </td>
+            <td>
+              {{curso.titulo}}
+            </td>
+            <td>
+              <button class="btn btn-success" (click)="editar(curso.idCurso)">Editar</button>
+              <button class="btn btn-danger" (click)="eliminar(curso.idCurso)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
