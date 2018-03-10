@@ -34,10 +34,7 @@ const rutas: Routes = [
     InsercionDepartamentosComponent,
     ListadoLocalesComponent,
     EdicionLocalesComponent,
-    InsercionLocalesComponent,
-    LoginComponent,
-    HomeComponent,
-    CabeceraComponent
+    InsercionLocalesComponent
  ],
  imports: [
      RouterModule.forRoot(rutas)
