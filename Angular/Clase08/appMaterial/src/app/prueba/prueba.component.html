@@ -1,4 +1,4 @@
-<button>Presióname</button>
+<!--<button>Presióname</button>
 <br>
 <button mat-button color="primary">Presióname</button>
 <br>
@@ -23,4 +23,39 @@
 <br>
 <button mat-mini-fab>
   <mat-icon>build</mat-icon>
-</button>
+</button>-->
+
+<!-- BUTTON TOGGLE
+<mat-button-toggle-group vertical="true" (change)="botonSeleccionado($event)">
+  <mat-button-toggle value="1">Opcion1</mat-button-toggle>
+  <mat-button-toggle value="2">Opcion2</mat-button-toggle>
+</mat-button-toggle-group>
+-->
+
+<!-- Controles de progreso
+<mat-progress-bar mode="determinate" [value]="avance"></mat-progress-bar>
+<h3 style="text-align:center">{{avance}}% </h3>
+
+<mat-progress-spinner mode="determinate" [value]="avance"></mat-progress-spinner>
+-->
+
+
+<form [formGroup]="signIn">
+  <mat-form-field>
+    <input type="email" matInput placeholder="Ingrese su correo" formControlName="correo">
+    <mat-hint>No correo gratuito</mat-hint>
+    <mat-error *ngIf="signIn.get('correo').hasError('required')">El campo es requerido</mat-error>
+    <mat-error *ngIf="!signIn.get('correo').hasError('required') && signIn.get('correo').hasError('email')">Tiene que tener el formato de correo</mat-error>
+  </mat-form-field>
+  <mat-form-field hintLabel="Contraseña reservada">
+    <input type="password" matInput placeholder="Ingrese su contraseña" #contrasena formControlName="contrasena">
+    <mat-hint align="end">{{contrasena.value ? contrasena.value.length : '0'}} de 8</mat-hint>
+    <mat-error>La contraseña es requerida</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput [matDatepicker]="fecha" placeholder="Fecha de nacimiento" [max]="fechaMaxima" [min]="fechaMinima">
+    <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
+    <mat-datepicker #fecha></mat-datepicker>
+  </mat-form-field>
+  <button mat-raised-button color="warn">Ingresar</button>
+</form>
