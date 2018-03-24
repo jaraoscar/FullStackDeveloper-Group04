@@ -1,0 +1,20 @@
+<mat-nav-list>
+    <a mat-list-item routerLink="/materias" (click)="cerrarMenu()">
+        <mat-icon>face</mat-icon>
+        <span>Materias</span>
+    </a>
+    <a mat-list-item routerLink="/cursos" (click)="cerrarMenu()">
+        <mat-icon>face</mat-icon>
+        <span>Cursos</span>
+    </a>
+    <a mat-list-item routerLink="/alumnos" (click)="cerrarMenu()">
+        <mat-icon>face</mat-icon>
+        <span>Alumnos</span>
+    </a>
+    <mat-list-item>
+        <button mat-icon-button (click)="cerrarMenu()">
+            <mat-icon>lock</mat-icon>
+            <span>Cerrar sesión</span>
+        </button>
+    </mat-list-item>
+</mat-nav-list>

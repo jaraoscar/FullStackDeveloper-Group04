@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-prueba',
@@ -14,7 +16,7 @@ export class PruebaComponent implements OnInit {
   fechaMaxima: Date
   fechaMinima: Date
 
-  constructor() { }
+  constructor(private dialogo: MatDialog, private snack: MatSnackBar) { }
 
   ngOnInit() {
     this.fechaMaxima = new Date()
@@ -23,9 +25,9 @@ export class PruebaComponent implements OnInit {
     this.fechaMinima = new Date()
     this.fechaMinima.setFullYear(this.fechaMinima.getFullYear() - 50)
 
-    this.timer = setInterval(()=>{
+    this.timer = setInterval(() => {
       this.avance += 20
-      if(this.avance >= 100) {
+      if (this.avance >= 100) {
         this.avance = 100
         clearInterval(this.timer)
       }
@@ -33,15 +35,42 @@ export class PruebaComponent implements OnInit {
 
     this.signIn = new FormGroup({
       correo: new FormControl(null, [Validators.required, Validators.email]),
-      contrasena: new FormControl(null, Validators.required)
+      contrasena: new FormControl(null, Validators.required),
+      fecha: new FormControl(null, Validators.required),
+      terminos: new FormControl(null, Validators.requiredTrue),
+      sexo: new FormControl(null, Validators.required)
     })
-
-
-
   }
 
-  botonSeleccionado(btn){
+  cambiarColor(dato) {
+    console.log(dato)
+  }
+
+  ingresar() {
+    console.log(this.signIn)
+  }
+
+  botonSeleccionado(btn) {
     console.log(btn.value)
+  }
+
+  abrirPopup(){
+    let respuesta: MatDialogRef<PopupComponent> = this.dialogo.open(PopupComponent, {
+      data: {alumno: 'Juan Pérez', curso: "Matemáticas"},
+      disableClose: true
+    })
+
+    respuesta.afterClosed().subscribe(
+      dataDevuelta => {
+        console.log(dataDevuelta)
+        this.snack.open("Registro grabado", "", {
+          duration: 2000
+        })
+
+        // this.snack.openFromComponent(NotificadorComponent)
+      }
+    )
+
   }
 
 }

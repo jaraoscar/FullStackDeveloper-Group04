@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Edición de registro</h1>
+<mat-dialog-content>
+  Alumno: {{datosRecibidos.alumno}}
+  <br> Curso: {{datosRecibidos.curso}}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button color="primary" mat-dialog-close="true">Grabar</button>
+  <button mat-flat-button color="warn" mat-dialog-close="false">Cancelar</button>
+  <button mat-stroked-button (click)="enviarInfo()">Enviar info</button>
+</mat-dialog-actions>

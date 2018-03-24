@@ -1,1 +1,53 @@
-<app-prueba></app-prueba>
+<!--<app-prueba></app-prueba>-->
+<mat-sidenav-container>
+    <!--<mat-sidenav [opened]="sidenavOpen">-->
+    <mat-sidenav #lateral>
+        <app-menu-movil (onCerrarMenu)="lateral.close()"></app-menu-movil>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div fxHide.gt-xs>
+                <button mat-icon-button (click)="lateral.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>Sistema</div>
+            <!--<div fxFlex></div>-->
+            <nav fxFlex fxLayoutAlign="flex-end" fxHide.xs>
+                <ul fxLayout fxLayoutGap="10px">
+                    <li>
+                        <a routerLink="/materias">Materias</a>
+                    </li>
+                    <li>
+                        <a routerLink="/cursos">Cursos</a>
+                    </li>
+                    <li>
+                        <a routerLink="/alumnos">Alumnos</a>
+                    </li>
+                    <li>
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu>
+                            <button mat-menu-item>
+                                <mat-icon>face</mat-icon>
+                                Perfil
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>lock</mat-icon>
+                                Cerrar sesión
+                            </button>
+                        </mat-menu>
+                    </li>
+                </ul>
+            </nav>
+            <!--<button mat-raised-button (click)="lateral.toggle()" color="primary">Abrir Sidenav</button>-->
+        </mat-toolbar>
+        <!--<button mat-raised-button color="primary" (click)="sidenavOpen = true">Abrir Sidenav</button>-->
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
