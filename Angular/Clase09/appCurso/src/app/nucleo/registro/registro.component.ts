@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AutenticacionService } from '../../servicios/autenticacion.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegistroComponent implements OnInit {
 
   ingreso: FormGroup
 
-  constructor(private auth: AutenticacionService) { }
+  constructor(private auth: AutenticacionService, private referencia: MatDialogRef<RegistroComponent>) { }
 
   ngOnInit() {
     this.ingreso = new FormGroup({
@@ -22,11 +23,14 @@ export class LoginComponent implements OnInit {
     this.auth.inicializar()
   }
 
-  login(){
+  registro(){
     const correo = this.ingreso.value.correo
     const contrasena = this.ingreso.value.contrasena
 
-    this.auth.login(correo, contrasena)
+    this.auth.registro(correo, contrasena)
+      .then(()=> {
+        this.referencia.close(true)
+      })
   }
 
 }

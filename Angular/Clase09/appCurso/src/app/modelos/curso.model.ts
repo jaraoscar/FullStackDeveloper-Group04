@@ -4,3 +4,5 @@ export interface ICurso {
     fechaCreacion?: number,
     eliminado?: boolean
 }
+
+// 1523130106581

@@ -13,6 +13,13 @@ import { NucleoModule } from './nucleo/nucleo.module';
 import { ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule } from './material/material.module';
 
+import { AngularFireModule } from 'angularfire2'
+import { AngularFirestoreModule } from 'angularfire2/firestore'
+import { AngularFireAuthModule } from 'angularfire2/auth'
+import { AngularFireStorageModule } from 'angularfire2/storage'
+import { environment } from '../environments/environment';
+import { RegistroComponent } from './nucleo/registro/registro.component';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,9 +29,14 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     NucleoModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [AlumnoService, CursoService, AutenticacionService, AutenticacionGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RegistroComponent]
 })
 export class AppModule { }

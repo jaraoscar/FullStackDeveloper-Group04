@@ -1,3 +1,21 @@
-<p>
-  listado-curso works!
-</p>
+<mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="titulo">
+    <mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
+    <mat-cell *matCellDef="let registro">{{registro.titulo}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="fechaCreacion">
+    <mat-header-cell *matHeaderCellDef>Fecha de Creación</mat-header-cell>
+    <mat-cell *matCellDef="let registro">{{registro.fechaCreacion}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="eliminado">
+    <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+    <mat-cell *matCellDef="let registro">{{registro.eliminado}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+  <mat-row *matRowDef="let registros; columns: columnasAMostrar"></mat-row>
+
+</mat-table>
