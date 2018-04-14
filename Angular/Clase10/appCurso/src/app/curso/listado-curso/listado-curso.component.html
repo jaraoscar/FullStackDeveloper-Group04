@@ -1,0 +1,35 @@
+<div fxLayout fxLayoutAlign="center">
+  <mat-card fxFlex="800px">
+    <mat-card-title fxLayout>
+      <h1>Cursos</h1>
+      <div fxFlex fxLayout fxLayoutAlign="end center" (click)="popupCurso(true)">
+        <button mat-mini-fab>
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="titulo">
+          <mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{registro.titulo}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaCreacion">
+          <mat-header-cell *matHeaderCellDef>Fecha de Creación</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{registro.fechaCreacion}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eliminado">
+          <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{registro.eliminado}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+        <mat-row *matRowDef="let registros; columns: columnasAMostrar"></mat-row>
+
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>
