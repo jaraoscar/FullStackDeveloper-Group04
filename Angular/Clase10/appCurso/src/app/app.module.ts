@@ -24,6 +24,11 @@ import { environment } from '../environments/environment';
 import { RegistroComponent } from './nucleo/registro/registro.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
 
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs);
+
 @NgModule({
   declarations: [
     AppComponent
@@ -40,7 +45,7 @@ import { MAT_DATE_LOCALE } from '@angular/material';
     AngularFireStorageModule
   ],
   providers: [AlumnoService, CursoService, AutenticacionService, AutenticacionGuard, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
-  {provide: LOCALE_ID, useValue: 'es-PE' }],
+  {provide: LOCALE_ID, useValue: 'es-ES' }],
   bootstrap: [AppComponent],
   entryComponents: [RegistroComponent]
 })

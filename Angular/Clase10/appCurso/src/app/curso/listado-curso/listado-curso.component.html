@@ -17,7 +17,7 @@
 
         <ng-container matColumnDef="fechaCreacion">
           <mat-header-cell *matHeaderCellDef>Fecha de Creación</mat-header-cell>
-          <mat-cell *matCellDef="let registro">{{registro.fechaCreacion}}</mat-cell>
+          <mat-cell *matCellDef="let registro">{{registro.fechaCreacion | fecha | date: "dd MMM yy"}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="eliminado">
