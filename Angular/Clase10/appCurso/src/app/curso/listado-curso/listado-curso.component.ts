@@ -4,6 +4,7 @@ import { ICurso } from '../../modelos/curso.model';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { PopupCursoComponent } from '../popup-curso/popup-curso.component';
 import { ConfirmacionComponent } from '../../compartido/confirmacion/confirmacion.component';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-listado-curso',
@@ -15,6 +16,8 @@ export class ListadoCursoComponent implements OnInit {
   columnasAMostrar: Array<string> = ["titulo", "fechaCreacion", "eliminado", "accion"]
 
   dataSource: MatTableDataSource<ICurso>
+
+  suscripcion: Subscription
 
   constructor(private cursoService: CursoService, private dialogo: MatDialog) { }
 
@@ -44,36 +47,52 @@ export class ListadoCursoComponent implements OnInit {
       )
   }
 
+  abrirPopup(){
+    this.popupCurso(true)
+  }
+
+  modificar(id: string) {
+    this.suscripcion = this.cursoService.detallar(id)
+      .subscribe(
+      (data: ICurso) => {
+        console.log("detallar")
+        this.suscripcion.unsubscribe()
+        this.popupCurso(false, { id, ...data })
+      },
+      error => console.log(error)
+      )
+  }
+
   eliminar(id: string) {
     const referencia = this.dialogo.open(ConfirmacionComponent, {
-      data: {mensaje: "¿Está seguro de querer eliminar"},
+      data: { mensaje: "¿Está seguro de querer eliminar" },
       width: "300"
     })
 
     referencia.afterClosed()
       .subscribe(
-        respuesta => {
-          console.log(typeof(respuesta))
-          if(respuesta==="true") {
-            this.cursoService.eliminar(id)
-          }
+      respuesta => {
+        console.log(typeof (respuesta))
+        if (respuesta === "true") {
+          this.cursoService.eliminar(id)
         }
+      }
       )
-    
-      /*.then(
-        ()=> console.log("registro eliminado")
-      )
-      .catch(
-        error => console.log(error)
-      )*/
+
+    /*.then(
+      ()=> console.log("registro eliminado")
+    )
+    .catch(
+      error => console.log(error)
+    )*/
   }
 
-  popupCurso(accion: boolean) {
-    const referencia = this.dialogo.open(PopupCursoComponent, {
-      data: { accion },
-      //disableClose: true,
-      height: "400"
-    })
+  popupCurso(accion: boolean, datos = null) {
+    const referencia  = this.dialogo.open(PopupCursoComponent, {
+        data: { accion, datos },
+        //disableClose: true,
+        height: "400"
+      })
 
     referencia.afterClosed()
       .subscribe(

@@ -2,8 +2,8 @@
   <mat-card fxFlex="800px">
     <mat-card-title fxLayout>
       <h1>Cursos</h1>
-      <div fxFlex fxLayout fxLayoutAlign="end center" (click)="popupCurso(true)">
-        <button mat-mini-fab>
+      <div fxFlex fxLayout fxLayoutAlign="end center">
+        <button mat-mini-fab (click)="abrirPopup()">
           <mat-icon>add</mat-icon>
         </button>
       </div>
@@ -32,7 +32,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menuRegistro="matMenu">
-              <button mat-menu-item>Modificar</button>
+              <button mat-menu-item (click)="modificar(registro.id)">Modificar</button>
               <button mat-menu-item (click)="eliminar(registro.id)">Eliminar</button>
             </mat-menu>
           </mat-cell>
