@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { ICurso } from '../modelos/curso.model';
 import { Observable } from 'rxjs/Observable';
+import { MatDialog } from '@angular/material';
+
+
 
 @Injectable()
 export class CursoService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private dialogo: MatDialog) { }
 
-  listar(): Observable<ICurso[]>{
-    const coleccion: AngularFirestoreCollection<ICurso>  = this.afs.collection<ICurso>("curso")
+  listar(): Observable<any> {
+    const coleccion: AngularFirestoreCollection<ICurso> = this.afs.collection<ICurso>("curso")
 
-    return coleccion.valueChanges()
+    //return coleccion.valueChanges()
+    return coleccion.snapshotChanges()
   }
 
   insertar(curso: ICurso): Promise<any> {
@@ -20,15 +24,27 @@ export class CursoService {
     return coleccion.add(curso)
   }
 
-  detallar(){
+  detallar() {
 
   }
 
-  actualizar(){
+  actualizar() {
 
   }
 
-  eliminar(){
+  eliminar(id) {
+
+    this
+      .afs
+      .doc<ICurso>(`curso/${id}`)
+      .delete()
+
+    /*if (confirm("¿Está seguro de eliminar?")) {
+      const documento = this.afs.doc<ICurso>(`curso/${id}`)
+
+      return documento.delete()
+    }*/
+    //return Promise.resolve()
 
   }
 

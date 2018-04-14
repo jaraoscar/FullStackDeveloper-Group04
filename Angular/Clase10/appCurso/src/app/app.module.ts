@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { LOCALE_ID } from '@angular/core';
+
+
 import { AppComponent } from './app.component';
 import { AlumnoService } from './servicios/alumno.service';
 import { CursoService } from './servicios/curso.service';
@@ -19,6 +22,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { AngularFireStorageModule } from 'angularfire2/storage'
 import { environment } from '../environments/environment';
 import { RegistroComponent } from './nucleo/registro/registro.component';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import { RegistroComponent } from './nucleo/registro/registro.component';
     AngularFireAuthModule,
     AngularFireStorageModule
   ],
-  providers: [AlumnoService, CursoService, AutenticacionService, AutenticacionGuard],
+  providers: [AlumnoService, CursoService, AutenticacionService, AutenticacionGuard, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+  {provide: LOCALE_ID, useValue: 'es-PE' }],
   bootstrap: [AppComponent],
   entryComponents: [RegistroComponent]
 })

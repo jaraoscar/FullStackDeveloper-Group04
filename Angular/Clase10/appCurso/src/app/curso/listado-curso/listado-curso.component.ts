@@ -3,6 +3,7 @@ import { CursoService } from '../../servicios/curso.service';
 import { ICurso } from '../../modelos/curso.model';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { PopupCursoComponent } from '../popup-curso/popup-curso.component';
+import { ConfirmacionComponent } from '../../compartido/confirmacion/confirmacion.component';
 
 @Component({
   selector: 'app-listado-curso',
@@ -11,7 +12,7 @@ import { PopupCursoComponent } from '../popup-curso/popup-curso.component';
 })
 export class ListadoCursoComponent implements OnInit {
 
-  columnasAMostrar: Array<string> = ["titulo", "fechaCreacion", "eliminado"]
+  columnasAMostrar: Array<string> = ["titulo", "fechaCreacion", "eliminado", "accion"]
 
   dataSource: MatTableDataSource<ICurso>
 
@@ -24,11 +25,47 @@ export class ListadoCursoComponent implements OnInit {
   listado() {
     this.cursoService.listar()
       .subscribe(
-      (datos: ICurso[]) => {
-        this.dataSource = new MatTableDataSource<ICurso>(datos)
+      (datos: any) => {
+        const resultados = datos.map(item => {
+          return {
+            id: item.payload.doc.id,
+            ...item.payload.doc.data()
+          }
+          //console.log(item.payload.doc.id)
+          //console.log(item.payload.doc.data())
+          /*console.log({
+            id: item.payload.doc.id,
+            ...item.payload.doc.data()
+          })*/
+        })
+        //console.log(datos)
+        this.dataSource = new MatTableDataSource<ICurso>(resultados)
       }
       )
+  }
 
+  eliminar(id: string) {
+    const referencia = this.dialogo.open(ConfirmacionComponent, {
+      data: {mensaje: "¿Está seguro de querer eliminar"},
+      width: "300"
+    })
+
+    referencia.afterClosed()
+      .subscribe(
+        respuesta => {
+          console.log(typeof(respuesta))
+          if(respuesta==="true") {
+            this.cursoService.eliminar(id)
+          }
+        }
+      )
+    
+      /*.then(
+        ()=> console.log("registro eliminado")
+      )
+      .catch(
+        error => console.log(error)
+      )*/
   }
 
   popupCurso(accion: boolean) {
