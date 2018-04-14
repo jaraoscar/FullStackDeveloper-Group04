@@ -14,8 +14,10 @@ export class CursoService {
     return coleccion.valueChanges()
   }
 
-  insertar(){
+  insertar(curso: ICurso): Promise<any> {
+    const coleccion: AngularFirestoreCollection<ICurso> = this.afs.collection<ICurso>("curso")
 
+    return coleccion.add(curso)
   }
 
   detallar(){

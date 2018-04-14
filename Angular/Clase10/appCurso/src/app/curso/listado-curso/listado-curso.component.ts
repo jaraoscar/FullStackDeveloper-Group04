@@ -18,19 +18,39 @@ export class ListadoCursoComponent implements OnInit {
   constructor(private cursoService: CursoService, private dialogo: MatDialog) { }
 
   ngOnInit() {
+    this.listado()
+  }
+
+  listado() {
     this.cursoService.listar()
       .subscribe(
-        (datos: ICurso[]) => {
-          this.dataSource = new MatTableDataSource<ICurso>(datos)
-        }
+      (datos: ICurso[]) => {
+        this.dataSource = new MatTableDataSource<ICurso>(datos)
+      }
       )
+
   }
 
   popupCurso(accion: boolean) {
-    this.dialogo.open(PopupCursoComponent, {
-      data: {accion},
-      disableClose: true
+    const referencia = this.dialogo.open(PopupCursoComponent, {
+      data: { accion },
+      //disableClose: true,
+      height: "400"
     })
+
+    referencia.afterClosed()
+      .subscribe(
+      respuesta => {
+        if (respuesta === true) {
+          // this.listado()
+          // Actualizan el listado
+        } else if (respuesta === false) {
+          // No se hace nada
+        } else {
+          // No se hace nada
+        }
+      }
+      )
   }
 
 }

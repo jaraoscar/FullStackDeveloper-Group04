@@ -12,7 +12,10 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-  MatTableModule
+  MatTableModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSlideToggleModule
 } from '@angular/material'
 
 import { FlexLayoutModule } from '@angular/flex-layout'
@@ -34,7 +37,10 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }

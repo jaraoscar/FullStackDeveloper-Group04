@@ -5,12 +5,14 @@ import { CursoRoutingModule } from './curso-routing.module';
 import { PopupCursoComponent } from './popup-curso/popup-curso.component';
 import { ListadoCursoComponent } from './listado-curso/listado-curso.component';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     CursoRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   declarations: [PopupCursoComponent, ListadoCursoComponent],
   entryComponents: [PopupCursoComponent]

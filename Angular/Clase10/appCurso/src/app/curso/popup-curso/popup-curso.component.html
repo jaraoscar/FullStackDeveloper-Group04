@@ -1,3 +1,24 @@
-<p>
-  popup-curso works!
-</p>
+<div mat-dialog>
+  <h1 mat-dialog-title>Curso</h1>
+  <div mat-dialog-content>
+    <form fxLayout="column" fxFlex.gt-sm="500px" fxFlex.sm="340px" style="overflow:hidden" [formGroup]="grupo">
+      <mat-form-field>
+        <input type="text" placeholder="Ingrese el título" matInput formControlName="titulo" required>
+        <mat-error>El título es requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" placeholder="Ingrese la fecha" [matDatepicker]="fecha" matInput formControlName="fecha" required>
+        <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
+        <mat-datepicker #fecha></mat-datepicker>
+        <mat-error>La fecha es requerida</mat-error>
+      </mat-form-field>
+      <div fxLayout>
+          <mat-slide-toggle [checked]="eliminado" (change)="eliminado=$event.checked">¿Eliminado?</mat-slide-toggle>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions fxLayout fxLayoutAlign="end">
+    <button mat-raised-button color="primary" [disabled]="!grupo.valid" (click)="agregar()">Agregar</button>
+    <button mat-button color="accent" mat-dialog-close="false">Cerrar</button>
+  </div>
+</div>
