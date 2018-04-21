@@ -1,0 +1,47 @@
+<div fxLayout fxLayoutAlign="center">
+  <mat-card fxFlex="800px">
+    <mat-card-title fxLayout>
+      <h1>Cursos</h1>
+      <div fxFlex fxLayout fxLayoutAlign="end center">
+        <button mat-mini-fab (click)="abrirPopup()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="titulo">
+          <mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{registro.titulo}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaCreacion">
+          <mat-header-cell *matHeaderCellDef>Fecha de Creación</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{registro.fechaCreacion | fecha | date: "dd MMM yy"}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eliminado">
+          <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+          <mat-cell *matCellDef="let registro">{{registro.eliminado}}</mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="accion">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let registro">
+            <button mat-icon-button [matMenuTriggerFor]="menuRegistro">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menuRegistro="matMenu">
+              <button mat-menu-item (click)="modificar(registro.id)">Modificar</button>
+              <button mat-menu-item (click)="eliminar(registro.id)">Eliminar</button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+        <mat-row *matRowDef="let registros; columns: columnasAMostrar"></mat-row>
+
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>
