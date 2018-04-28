@@ -1,7 +1,8 @@
 {
 	"watch": [
 		"src",
-		"rutas"
+		"rutas",
+		"api"
 	],
 	"ext": "ts",
 	"exec": "ts-node src/servidor"

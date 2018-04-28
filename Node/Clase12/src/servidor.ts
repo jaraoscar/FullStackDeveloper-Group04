@@ -3,12 +3,12 @@ import { Application, Request, Response, NextFunction } from "express"
 import express = require("express")
 import bodyParser = require("body-parser")
 import { ruteador as productosRutas } from "../rutas/productosRutas"
+import { ruteador as indexRutas } from "../rutas/indexRutas"
 
 // Declaraciones
 const app: Application = express()
 app.set("view engine", "pug")
 app.set("views", "./vistas")
-
 
 // Middlewares
 app.use(bodyParser.json())
@@ -19,30 +19,29 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	next()
 })
 
+// Rutas
+app.use("/", indexRutas)
 app.use("/productos", productosRutas)
 
-
-
-// Rutas
-app.get("/", (req: Request, res: Response) => {
-	res
-		.type("text/html")
-		.send("<h1>prueba</h1>")
+// Errores
+interface IError extends Error {
+	status?: number
+}
+// Página no encontrada
+app.use((req: Request, res: Response, next: NextFunction) => {
+	const error: IError = new Error("Página no encontrada")
+	error.status = 404
+	next(error)
 })
 
-app.get("/home", (req: Request, res: Response) => {
-	res.render("home", {
-		tituloPagina: "Home"
+// Manejador de errores general
+app.use((error: IError, req: Request, res: Response, next: NextFunction) => {
+	res.render("error", {
+		mensaje: error.message,
+		estado: error.status,
+		pila: error.stack
 	})
 })
-
-app.get("/quienessomos", (req: Request, res: Response) => {
-	res.render("quienes", {
-		tituloPagina: req.query.titulo
-	})
-})
-
-
 
 // Escuchar el puerto
 app.listen(4000, () => console.log("Servidor escuchando en el puerto 4000"))
