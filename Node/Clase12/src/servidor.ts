@@ -4,6 +4,7 @@ import express = require("express")
 import bodyParser = require("body-parser")
 import { ruteador as productosRutas } from "../rutas/productosRutas"
 import { ruteador as indexRutas } from "../rutas/indexRutas"
+import { manejador } from "../errores/manejadorErrores"
 
 // Declaraciones
 const app: Application = express()
@@ -31,24 +32,12 @@ app.use("/", indexRutas)
 app.use("/productos", productosRutas)
 
 // Errores
-interface IError extends Error {
-	status?: number
-}
+
 // Página no encontrada
-app.use((req: Request, res: Response, next: NextFunction) => {
-	const error: IError = new Error("Página no encontrada")
-	error.status = 404
-	next(error)
-})
+app.use(manejador.noEncontrada)
 
 // Manejador de errores general
-app.use((error: IError, req: Request, res: Response, next: NextFunction) => {
-	res.render("error", {
-		mensaje: error.message,
-		estado: error.status,
-		pila: error.stack
-	})
-})
+app.use(manejador.general)
 
 // Escuchar el puerto
 app.listen(4000, () => console.log("Servidor escuchando en el puerto 4000"))

@@ -2,7 +2,8 @@
 	"watch": [
 		"src",
 		"rutas",
-		"api"
+		"api",
+		"errores"
 	],
 	"ext": "ts",
 	"exec": "ts-node src/servidor"
