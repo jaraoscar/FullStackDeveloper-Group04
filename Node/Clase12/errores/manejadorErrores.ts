@@ -11,11 +11,20 @@ const manejador = {
 		next(error)
 	},
 	general: (error: IError, req: Request, res: Response, next: NextFunction) => {
-		res.render("error", {
-			mensaje: error.message,
-			estado: error.status,
-			pila: error.stack
-		})
+		if (process.env.NODE_ENV === "development") {
+			res.render("error", {
+				mensaje: error.message,
+				estado: error.status,
+				pila: error.stack
+			})
+		} else if (process.env.NODE_ENV === "production") {
+			res.render("error", {
+				mensaje: error.message,
+				estado: error.status,
+				pila: ""
+			})
+		}
+
 	}
 }
 
