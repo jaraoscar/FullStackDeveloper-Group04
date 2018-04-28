@@ -4,7 +4,7 @@ import { controlador as indexControladores } from "../api/controladores/indexCon
 
 const ruteador = express.Router()
 
-ruteador.get("/", indexControladores.index)
+ruteador.get("/", indexControladores.home)
 ruteador.get("/home", indexControladores.home)
 ruteador.get("/quienessomos", indexControladores.quienessomos)
 

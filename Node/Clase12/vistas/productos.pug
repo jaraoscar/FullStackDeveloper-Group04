@@ -3,20 +3,24 @@ extends base
 include mixins/_formulario
 
 block contenido
-	h1 #{tituloPagina.toUpperCase()}
+	div.container
+		div.row
+			h1.col.s12 #{tituloPagina.toUpperCase()}
 
-	table
-		thead
-			tr
-				th ID
-				th Producto
-		tbody
-			if lista.length > 5
-				each item in lista
-					tr
-						td= item.id
-						td= item.nombre
-			else
-				p 
-				| Solo hay 5 ó menos productos
-	+formulario()
+		div.card.col.s8.push-s2
+			div.card-content
+				table
+					thead
+						tr
+							th ID
+							th Producto
+					tbody
+						if lista.length > 5
+							each item in lista
+								tr
+									td= item.id
+									td= item.nombre
+						else
+							p 
+							| Solo hay 5 ó menos productos
+				+formulario()

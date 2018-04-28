@@ -1,5 +1,7 @@
 mixin formulario(producto={})
 	form(method="post",action="/productos/agregar")
-		input(type="text",placeholder="Nombre del producto",name="nombre")
-		br
-		button(type="submit") Grabar
+		div.input-text
+			label(for="nombre") Nombre del producto
+			input(type="text",name="nombre",id="nombre")
+		div.input-text
+			button.btn.waves-effects.waves-light(type="submit") Grabar

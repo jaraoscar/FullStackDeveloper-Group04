@@ -2,6 +2,14 @@ doctype html
 html
 	head
 		title #{locals.titulo}
-		link(rel="stylesheet",href="estilos.css")
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto:400,700")
+		link(rel="stylesheet",href="/materialize/css/materialize.min.css")
+		link(rel="stylesheet",href="/css/estilos.css")
 	body
+		nav.blue.lighten-3
+			div.nav-wrapper
+				a.brand-logo(href="#") Sistema
+				ul#nav-mobile.right.hide-on-med-and-down
+					li
+						a(href="/productos") Productos
 		block contenido

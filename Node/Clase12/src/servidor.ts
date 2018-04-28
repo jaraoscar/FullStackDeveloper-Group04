@@ -10,6 +10,13 @@ const app: Application = express()
 app.set("view engine", "pug")
 app.set("views", "./vistas")
 
+/*app.use("/publico", (req: Request, res: Response, next: NextFunction) => {
+	// __dirname
+	res.sendFile("/Users/administrador/Desktop/FullStackDeveloper-Group04/Node/Clase12/publico" + req.url)
+})*/
+
+app.use(express.static("./publico"))
+
 // Middlewares
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
