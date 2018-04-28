@@ -1,0 +1,5 @@
+mixin formulario(producto={})
+	form(method="post",action="/productos/agregar")
+		input(type="text",placeholder="Nombre del producto",name="nombre")
+		br
+		button(type="submit") Grabar
