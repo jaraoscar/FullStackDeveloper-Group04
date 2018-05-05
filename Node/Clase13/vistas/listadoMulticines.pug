@@ -12,10 +12,14 @@ block contenido
 								th Nombre
 								th Descripción
 								th Características
+								th Acción
 						tbody
 							each registro in registros
 								tr
-									td #{registro._id}
+									td 
+										a(href=`/multicines/editar/${registro._id}`) #{registro._id}
 									td #{registro.nombre}
 									td #{registro.descripcion}
 									td #{registro.caracteristicas.join(" - ")}
+									td
+										a.btn.red(href=`/multicines/eliminar/${registro._id}`) Eliminar
