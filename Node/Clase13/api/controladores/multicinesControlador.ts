@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express"
 
 const controlador = {
 	listar: (req: Request, res: Response) => {
-		res.send("No implementado")
+		res.render("listadoMulticines")
 	},
 	insertar: (req: Request, res: Response) => {
 		res.send("No implementado")
