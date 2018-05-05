@@ -6,8 +6,14 @@ import { ruteador as autenticacionRutas } from "../rutas/autenticacionRutas"
 import { ruteador as multicinesRutas } from "../rutas/multicinesRutas"
 import { ruteador as indexRutas } from "../rutas/indexRutas"
 import { manejador as manejadorCtrl } from "../errores/manejador"
+import mongoose = require("mongoose")
 
 require("dotenv").config({ path: "./variables.env" })
+
+// Conectar a Mongo
+mongoose.connect(process.env.DATABASE)
+mongoose.Promise = global.Promise
+mongoose.connection.on("error", error => console.log(error))
 
 // Variables
 const app: Application = express()

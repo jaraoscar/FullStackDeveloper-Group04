@@ -1,0 +1,20 @@
+extends base
+
+block contenido
+	div.container
+		div.row
+			div.card.col.s6.push-s3
+				div.card-content
+					h1 Insertar
+					form(method="post",action="/multicines")
+						div.input-field
+							label(for="nombre") Nombre
+							input(type="text",placeholder="Ingrese el nombre",name="nombre",id="nombre")
+						div.input-field
+							label(for="descripcion") Descripción
+							textarea.materialize-textarea(placeholder="Ingrese la descripción",name="descripcion",id="descripcion")
+						div.input-field
+							label(for="numeroSalas") Número salas
+							input(type="number",placeholder="Ingrese el número de salas",name="numeroSalas",id="numeroSalas")
+						div.input-field
+							button(type="submit").btn.teal.waves-effect.waves-light Insertar
