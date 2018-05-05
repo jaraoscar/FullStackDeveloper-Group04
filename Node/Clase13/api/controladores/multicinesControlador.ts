@@ -5,6 +5,7 @@ const controlador = {
 	listar: (req: Request, res: Response) => {
 		multicinesModelo.find()
 			.then(registros => {
+				console.log(registros)
 				res.render("listadoMulticines", { registros })
 			})
 			.catch(error => {
@@ -13,7 +14,6 @@ const controlador = {
 			})
 	},
 	formulario: (req: Request, res: Response) => {
-		console.log("Llegó acá")
 		res.render("editarMulticines")
 	},
 	insertar: (req: Request, res: Response) => {

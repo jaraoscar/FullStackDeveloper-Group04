@@ -1,4 +1,21 @@
 extends base
 
 block contenido
-	h1 Listado Multicines
+	div.container
+		div.row
+			div.card.col.s10.push-s1
+				div.card-content
+					table
+						thead
+							tr
+								th ID
+								th Nombre
+								th Descripción
+								th Características
+						tbody
+							each registro in registros
+								tr
+									td #{registro._id}
+									td #{registro.nombre}
+									td #{registro.descripcion}
+									td #{registro.caracteristicas.join(" - ")}
