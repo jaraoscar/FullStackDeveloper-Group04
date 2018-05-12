@@ -6,6 +6,8 @@ mongoose.connection.on("error", error => {
 	console.log(error)
 })
 
+require("./api/modelos/cinesModelo")
+
 import { app } from "./bin/app"
 
 

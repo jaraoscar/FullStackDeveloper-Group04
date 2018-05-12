@@ -1,9 +1,10 @@
 {
 	"watch": [
-		"src",
 		"rutas",
 		"api",
-		"errores"
+		"manejadores",
+		"bin",
+		"servidor"
 	],
 	"ext": "ts",
 	"exec": "ts-node servidor"

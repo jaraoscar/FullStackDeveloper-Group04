@@ -1,7 +1,7 @@
 import { Application, Request, Response, NextFunction } from "express"
 import express = require("express")
 import bodyParser = require("body-parser")
-import { ruteador as multicinesRutas } from "../rutas/multicinesRutas"
+import { ruteador as cinesRutas } from "../rutas/cinesRutas"
 import { errores } from "../manejadores/errores"
 
 const app: Application = express()
@@ -9,7 +9,7 @@ const app: Application = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use("/multicines", multicinesRutas)
+app.use("/cines", cinesRutas)
 
 app.use(errores.rutaNoEncontrada)
 app.use(errores.errorGeneral)

@@ -11,6 +11,13 @@ const errores = {
 		next(error)
 	},
 
+	cacheo: (ftn: (req: Request, res: Response) => Promise<any>) => {
+		return (rq: Request, rs: Response, nx: NextFunction) => {
+			// return ftn(rq, rs).catch(error => nx(error))
+			return ftn(rq, rs).catch(nx)
+		}
+	},
+
 	errorGeneral: (error: IError, req: Request, res: Response, next: NextFunction) => {
 		if (process.env.NODE_ENV === "development") {
 			res
