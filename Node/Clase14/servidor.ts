@@ -6,10 +6,11 @@ mongoose.connection.on("error", error => {
 	console.log(error)
 })
 
+// Modelos
 require("./api/modelos/cinesModelo")
+require("./api/modelos/opinionesModelo")
 
 import { app } from "./bin/app"
-
 
 //const app = require("./bin/app")
 const servidor = app.listen(process.env.PORT, () => {

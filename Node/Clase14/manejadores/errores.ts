@@ -13,8 +13,11 @@ const errores = {
 
 	cacheo: (ftn: (req: Request, res: Response) => Promise<any>) => {
 		return (rq: Request, rs: Response, nx: NextFunction) => {
-			// return ftn(rq, rs).catch(error => nx(error))
-			return ftn(rq, rs).catch(nx)
+			return ftn(rq, rs).catch(error => {
+				error.status = 500
+				nx(error)
+			})
+			//return ftn(rq, rs).catch(nx)
 		}
 	},
 

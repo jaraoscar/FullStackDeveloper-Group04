@@ -5,6 +5,8 @@ const controlador = {
 	insertar: async (req: Request, res: Response) => {
 		const cine = new Cines(req.body)
 
+		await cine.save()
+
 		res.json({ message: "Registro guardado" })
 	},
 
@@ -24,10 +26,10 @@ const controlador = {
 		/*const lista = await Cines.find()
 		const caracteristicas = await Caracteristicas.find()*/
 
-		const cinesPromesa: Promise<any> = Cines.find()
+		/*const cinesPromesa: Promise<any> = Cines.find()
 		const caracteristicasPromesa: Promise<any> = Caracteristicas.find()
 
-		const [lista, caracteristicas] = await Promise.all([cinesPromesa, caracteristicasPromesa])
+		const [lista, caracteristicas] = await Promise.all([cinesPromesa, caracteristicasPromesa])*/
 
 		/*await Promise.all([cinesPromesa, caracteristicasPromesa])
 			.then(resultados => {
@@ -38,20 +40,35 @@ const controlador = {
 			})
 			.catch(error => console.log(error))*/
 
-		res.json({ lista, caracteristicas })
+		//res.json({ lista, caracteristicas })
 		//console.log(lista)
 	},
 
-	actualizar: (req: Request, res: Response) => {
-		console.log("No implementado")
+	actualizar: async (req: Request, res: Response) => {
+		const _id = req.params.id
+
+		await Cines.findOneAndUpdate({ _id }, req.body)
+
+		res.json({ message: "Actualización correcta" })
+
+		/*const cine = await Cines.findOne({_id})
+		await Cines.update({_id: cine._id}, req.body)*/
 	},
 
-	eliminar: (req: Request, res: Response) => {
-		console.log("No implementado")
+	eliminar: async (req: Request, res: Response) => {
+		const _id = req.params.id
+
+		await Cines.findOneAndRemove({ _id })
+
+		res.json({ message: "Registro eliminado" })
 	},
 
-	detallar: (req: Request, res: Response) => {
-		console.log("No implementado")
+	detallar: async (req: Request, res: Response) => {
+		const _id = req.params.id
+
+		const cine = await Cines.findOne({ _id })
+
+		res.json(cine)
 	}
 }
 
