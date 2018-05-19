@@ -33,6 +33,7 @@ esquema.virtual("opiniones", {
 	foreignField: "cine"
 })
 
+
 function autoPoblar(next) {
 	this.populate("opiniones")
 	next()
@@ -42,10 +43,16 @@ esquema.pre("find", autoPoblar)
 
 esquema.pre("findOne", autoPoblar)
 
-esquema.pre("save", function (next) {
+esquema.pre("save", async function (next) {
 	this.slug = slug(this.titulo.toLowerCase())
 
-	const expReg = new RegExp(`^(${this.slug})( (-[0-9]*$)? )$`,'i')
+	const expReg = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`,'i')
+
+	const coincidencias = await this.constructor.find({slug: expReg})
+	console.log(coincidencias)
+	if(coincidencias.length) {
+		this.slug = `${this.slug}-${coincidencias.length+1}`
+	}
 
 	next()
 })
