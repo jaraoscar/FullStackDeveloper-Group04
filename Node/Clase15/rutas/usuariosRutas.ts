@@ -9,6 +9,7 @@ ruteador.post("/", errores.cacheo(usuariosCtrl.insertar))
 ruteador.put("/:id", errores.cacheo(usuariosCtrl.actualizar))
 ruteador.delete("/:id", errores.cacheo(usuariosCtrl.eliminar))
 ruteador.post("/login", errores.cacheo(usuariosCtrl.login))
+ruteador.post("/nuevotoken", errores.cacheo(usuariosCtrl.generarNuevoAccessToken))
 //ruteador.get("/", cinesCtrl.listar)
 
 

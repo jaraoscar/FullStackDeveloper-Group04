@@ -14,7 +14,7 @@ const esquema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    token: {
+    refreshToken: {
         type: String
     }
 }, {

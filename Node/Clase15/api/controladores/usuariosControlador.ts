@@ -16,10 +16,11 @@ const controlador = {
         //const usuarioInsertado = await usuario.save()
         const insertado = await usuario.save()
         const tokenGenerado = tokenServicio.crearToken(insertado._id)
+        const refreshTokenGenerado = tokenServicio.crearRefreshToken()
 
-        //await Usuarios.findOneAndUpdate({ _id: insertado._id }, { token: tokenGenerado })
+        await Usuarios.findOneAndUpdate({ _id: insertado._id }, { refreshToken: refreshTokenGenerado })
 
-        res.json({ status: 200, token: tokenGenerado })
+        res.json({ status: 200, tokens: {accessToken: tokenGenerado, refreshToken: refreshTokenGenerado} })
     },
 
     login: async (req: Request, res: Response) => {
@@ -28,7 +29,9 @@ const controlador = {
         if(usuario) {
             const token = tokenServicio.crearToken(usuario._id)
 
-            return res.json({status: 200, token: token})
+            return res.json({status: 200, tokens: {
+                accessToken: token, refreshToken: usuario.refreshToken
+            }})
         }
 
         return res
@@ -51,7 +54,32 @@ const controlador = {
         await Usuarios.findOneAndRemove({ _id }, req.body)
 
         res.json({ status: 200, message: "Registro actualizado" })
+    },
+
+    generarNuevoAccessToken: async (req: Request, res: Response) => {
+        const refreshToken = req.body.refreshToken
+
+        const usuario = await Usuarios.findOne({refreshToken})
+
+        if(usuario) {
+            const accessToken = tokenServicio.crearToken(usuario._id)
+
+            res.json({status: 200, tokens: {
+                accessToken
+            }})
+        } else {
+            res
+                .status(500)
+                .json({
+                    status: 500,
+                    message: "El refresh token es inválido"
+                })
+        }
+
     }
+
+
+
 }
 
 export { controlador }

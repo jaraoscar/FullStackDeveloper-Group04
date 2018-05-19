@@ -1,12 +1,13 @@
 const jwt = require("jwt-simple")
 const moment = require("moment")
+const randToken = require("rand-token")
 
 const servicio = {
     crearToken: id => {
         const payload = {
             id: id,
             iat: moment().unix(),
-            exp: moment().add(process.env.TOKEN_EXPIRE,'seconds').unix()
+            exp: moment().add(+process.env.TOKEN_EXPIRE,'seconds').unix()
         }
         
         return jwt.encode(payload, process.env.KEY_SECRET)
@@ -25,9 +26,10 @@ const servicio = {
                 }
             }
         })
+    },
 
-
-        
+    crearRefreshToken: () => {
+        return randToken.uid(256)
     }
 }
 
