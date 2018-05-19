@@ -1,13 +1,14 @@
 import express = require("express")
-import { controlador as cinesCtrl } from "../api/controladores/usuariosControlador"
+import { controlador as usuariosCtrl } from "../api/controladores/usuariosControlador"
 import { errores } from "../manejadores/errores"
 
 const ruteador = express.Router()
 
-ruteador.get("/", errores.cacheo(cinesCtrl.listar))
-ruteador.post("/", errores.cacheo(cinesCtrl.insertar))
-ruteador.put("/:id", errores.cacheo(cinesCtrl.actualizar))
-ruteador.delete("/:id", errores.cacheo(cinesCtrl.eliminar))
+ruteador.get("/", errores.cacheo(usuariosCtrl.listar))
+ruteador.post("/", errores.cacheo(usuariosCtrl.insertar))
+ruteador.put("/:id", errores.cacheo(usuariosCtrl.actualizar))
+ruteador.delete("/:id", errores.cacheo(usuariosCtrl.eliminar))
+ruteador.post("/login", errores.cacheo(usuariosCtrl.login))
 //ruteador.get("/", cinesCtrl.listar)
 
 

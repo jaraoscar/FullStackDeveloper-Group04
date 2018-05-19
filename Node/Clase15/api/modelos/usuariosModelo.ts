@@ -5,7 +5,9 @@ const esquema = new mongoose.Schema({
     correo: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true,
+        lowercase: true
     },
     contrasena: {
         type: String,
@@ -13,8 +15,7 @@ const esquema = new mongoose.Schema({
         trim: true
     },
     token: {
-        type: String,
-        required: true
+        type: String
     }
 }, {
     toJSON: {virtuals: true}
