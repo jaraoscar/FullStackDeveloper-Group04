@@ -9,6 +9,7 @@ mongoose.connection.on("error", error => {
 // Modelos
 require("./api/modelos/cinesModelo")
 require("./api/modelos/opinionesModelo")
+require("./api/modelos/usuariosModelo")
 
 import { app } from "./bin/app"
 
