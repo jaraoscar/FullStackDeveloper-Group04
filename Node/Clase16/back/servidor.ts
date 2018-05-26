@@ -1,5 +1,6 @@
 import { app } from "./bin/app"
 import mongoose = require("mongoose")
+import socketio = require("socket.io")
 
 require("dotenv").config({ path: "./variables.env" })
 
@@ -17,4 +18,16 @@ require("./api/modelos/libro.model")
 
 const servidor: any = app.listen(process.env.PORT, () => {
 	console.log(`Servidor ejecutándose en el puerto ${servidor.address().port}`)
+})
+
+const io = socketio(servidor)
+
+io.on("connect", socket => {
+	console.log(`ID conectado = ${socket.id}`)
+
+	socket.on("enviando nombre", data => {
+		//socket.emit("gracias", data)
+		//socket.broadcast.emit("gracias", data)
+		io.emit("gracias", data)
+	})
 })

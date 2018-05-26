@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<input type="text" id="nombre">
+	<br>
+	<button id="btnNombre">Enviar nombre</button>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		const nombreInput = document.querySelector("#nombre")
+		const btnNombre = document.querySelector("#btnNombre")
+
+		const socketio = io()
+
+		btnNombre.addEventListener("click", () => {
+			console.log("enviando")
+			socketio.emit("enviando nombre", nombreInput.value)
+		})
+
+		socketio.on("gracias", data => {
+			//alert(`Gracias ${data} por darme tu nombre`)
+			alert(`${data} se ha unido`)
+		})
+
+
+
+
+	</script>
+
+</body>
+
+</html>
