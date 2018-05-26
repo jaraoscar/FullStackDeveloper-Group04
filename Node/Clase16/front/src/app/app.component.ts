@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import * as io from "socket.io-client"
 
 interface IRegistro {
 	titulo: string
@@ -16,10 +17,17 @@ interface IRegistro {
 export class AppComponent implements OnInit {
 	registro: IRegistro
 	avance: number = 0
+	socketio: any
+	hora: any
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {
+		this.socketio = io.connect("http://localhost:4000")
+	}
 
 	ngOnInit() {
+		this.socketio.on("hora", data => {
+			this.hora = data
+		})
 		this.registro = { titulo: "", descripcion: "", foto: "" }
 	}
 

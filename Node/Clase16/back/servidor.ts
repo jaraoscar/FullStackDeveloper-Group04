@@ -22,8 +22,16 @@ const servidor: any = app.listen(process.env.PORT, () => {
 
 const io = socketio(servidor)
 
+const sockets = []
+
 io.on("connect", socket => {
 	console.log(`ID conectado = ${socket.id}`)
+	sockets.push(socket.id)
+	console.log("Todas las conexiones", sockets)
+
+	setInterval(() => {
+		io.emit("hora", (new Date()))
+	}, 1000)
 
 	socket.on("enviando nombre", data => {
 		//socket.emit("gracias", data)
