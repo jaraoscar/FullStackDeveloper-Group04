@@ -1,0 +1,9 @@
+<form (ngSubmit)="grabar(titulo.value, descripcion.value)">
+	<input type="text" name="titulo" #titulo>
+	<br>
+	<textarea name="descripcion" cols="30" rows="10" #descripcion></textarea>
+	<br>
+	<input type="file" name="foto" (change)="archivoAgregado($event)" accept="image/jpg, image/png, image/gif">
+	<br>
+	<button type="submit">Enviar</button>
+</form>
