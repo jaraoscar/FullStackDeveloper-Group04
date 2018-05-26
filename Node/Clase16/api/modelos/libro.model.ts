@@ -8,7 +8,7 @@ const esquema = new mongoose.Schema({
 	},
 
 	descripcion: String,
-	imagen: String
+	foto: String
 })
 
 const Libro = mongoose.model("Libro", esquema)

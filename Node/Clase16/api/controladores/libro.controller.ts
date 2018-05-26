@@ -15,6 +15,7 @@ const LibroController = {
 	},
 	insertar: async (req: Request, res: Response) => {
 		const libro = new Libro(req.body)
+		console.log(req.body)
 		await libro.save()
 
 		res.json({ status: 200, message: `Libro creado: ${libro.titulo}` })
