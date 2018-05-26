@@ -2,7 +2,9 @@ import { app } from "./bin/app"
 import mongoose = require("mongoose")
 import socketio = require("socket.io")
 
-require("dotenv").config({ path: "./variables.env" })
+https://fullstack-4.herokuapp.com/
+
+//require("dotenv").config({ path: "./variables.env" })
 
 mongoose.connect(process.env.DATABASE)
 mongoose.Promise = global.Promise

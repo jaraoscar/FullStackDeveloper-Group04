@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 	hora: any
 
 	constructor(private http: HttpClient) {
-		this.socketio = io.connect("http://localhost:4000")
+		this.socketio = io.connect()
 	}
 
 	ngOnInit() {
